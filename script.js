@@ -7,6 +7,8 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
     const employees = [];
     let continueQ = true;
+    var i = 0;
+    
     while (continueQ) {
       const emName = prompt("Enter your name:");
       const emLastName = prompt("Enter your last name:");
@@ -56,8 +58,10 @@ const displayAverageSalary = function(employees) {
 // Select a random employee
 const getRandomEmployee = function(employees) {
   let getRandomEmployee = Math.floor(Math.random() * employees.length);
+  let randomEmployee = employees[getRandomEmployee].emName;
   console.log(employees[getRandomEmployee].emName);
   console.log(employees[getRandomEmployee].emLastName);
+  console.log(`Our lucky employee is ${randomEmployee}`);
   return employees[getRandomEmployee];
   // TODO: Select and display a random employee
 }
@@ -83,11 +87,11 @@ const displayEmployees = function(employees) {
     const newTableRow = document.createElement("tr");
 
     const firstNameCell = document.createElement("td");
-    firstNameCell.textContent = currentEmployee.firstName;
+    firstNameCell.textContent = currentEmployee.emName;
     newTableRow.append(firstNameCell);
 
     const lastNameCell = document.createElement("td");
-    lastNameCell.textContent = currentEmployee.lastName;
+    lastNameCell.textContent = currentEmployee.emLastName;
     newTableRow.append(lastNameCell);
 
     const salaryCell = document.createElement("td");
@@ -115,7 +119,7 @@ const trackEmployeeData = function() {
   getRandomEmployee(employees);
 
   employees.sort(function(a,b) {
-    if (a.lastName < b.lastName) {
+    if (a.emLastName < b.emLastName) {
       return -1;
     } else {
       return 1;
